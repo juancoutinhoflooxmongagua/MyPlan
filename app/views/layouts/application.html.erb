@@ -25,32 +25,10 @@
 
   <body class="bg-gray-900 text-white">
 
-    <!-- Desktop Navbar -->
-    <nav class="bg-gray-800 p-4 hidden md:flex justify-between items-center">
-      <%= link_to "Myplan", root_path, class: "text-xl font-semibold text-blue-500" %>
-      <div class="flex space-x-4">
-        <%= link_to "Objetivos", objectives_path, class: "text-white hover:bg-gray-700 px-4 py-2 rounded-md" %>
-        <%= link_to "Novo Objetivo", new_objective_path, class: "text-white hover:bg-gray-700 px-4 py-2 rounded-md" %>
-      </div>
-    </nav>
+    <%= render 'shared/navbar_mobile' %>
+    <%= render 'shared/navbar' %>
+    <%= render 'shared/sidebar_mobile' %>
 
-    <!-- Mobile Navbar (Hamburguer Menu) -->
-    <nav class="bg-gray-800 p-4 md:hidden">
-      <div class="flex items-center justify-between">
-        <%= link_to "Myplan", root_path, class: "text-xl font-semibold text-blue-500" %>
-        <button id="mobile-menu-button" class="text-white" onclick="toggleMobileMenu()">
-          <i class="bi bi-list"></i>
-        </button>
-      </div>
-    </nav>
-
-    <!-- Sidebar for Mobile with Smooth Transition -->
-    <div id="mobile-menu" class="bg-gray-800 fixed top-0 left-0 w-64 h-full p-4 transform -translate-x-full transition-transform duration-300 ease-in-out">
-      <%= link_to "Objetivos", objectives_path, class: "text-white hover:bg-gray-700 py-2 px-4 rounded-md" %>
-      <%= link_to "Novo Objetivo", new_objective_path, class: "text-white hover:bg-gray-700 py-2 px-4 rounded-md mt-2" %>
-    </div>
-
-    <!-- Main Content -->
     <div class="md:ml-64 p-4">
       <%= yield %>
     </div>
