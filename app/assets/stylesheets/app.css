@@ -1,0 +1,38 @@
+/* app/assets/stylesheets/application.css */
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Scrollbar geral para navegadores WebKit */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+ ::-webkit-scrollbar-track {
+    background: #111;
+    /* fundo da trilha */
+}
+
+ ::-webkit-scrollbar-thumb {
+    background: #444;
+    /* cor da alça */
+    border-radius: 10px;
+    border: 2px solid #111;
+    transition: background 0.3s ease;
+}
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #666;
+    /* hover da alça */
+}
+
+
+/* Firefox */
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #444 #111;
+}
