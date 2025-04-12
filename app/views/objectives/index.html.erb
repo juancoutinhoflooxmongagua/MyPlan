@@ -2,9 +2,9 @@
   <h2 class="h3 text-white mb-0">
     Meus Objetivos <i class="bi bi-list-task ms-2 text-primary"></i>
   </h2>
-  <%= link_to new_objective_path, class: "btn btn-primary px-4 py-2 rounded-pill shadow-sm" do %>
-    <i class="bi bi-plus-circle me-2"></i> Novo Objetivo
-  <% end %>
+
+  <%= render 'new', objective: @objective %>
+
 </div>
 
 <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">

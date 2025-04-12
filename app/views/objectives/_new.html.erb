@@ -1,0 +1,160 @@
+<%= link_to 'Novo Objetivo', '#', class: 'btn btn-primary px-4 py-2 rounded-pill', data: { bs_toggle: 'modal', bs_target: '#newObjectiveModal' } %>
+
+<!-- Modal de Criação -->
+<div class="modal fade" id="newObjectiveModal" tabindex="-1" aria-labelledby="newObjectiveModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content bg-dark text-white border-0 rounded-4 shadow-lg">
+      <%= form_with(model: Objective.new, url: objectives_path, local: true) do |form| %> <!-- Novo objetivo, então a URL é para a criação -->
+
+        <!-- Cabeçalho -->
+        <div class="modal-header border-0 bg-black">
+          <h5 class="modal-title" id="newObjectiveModalLabel">Novo Objetivo</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <!-- Corpo -->
+        <div class="modal-body bg-black">
+          <div class="form mb-3">
+            <%= form.label :title, "Título", class: "form-label text-light" %>
+            <%= form.text_field :title, class: "input", placeholder: "Digite o título do objetivo", required: true %>
+            <span class="input-border"></span>
+          </div>
+
+          <div class="form mb-3">
+            <%= form.label :description, "Descrição", class: "form-label text-light" %>
+            <%= form.text_area :description, class: "input", placeholder: "Descreva seu objetivo", rows: 4, required: true %>
+            <span class="input-border"></span>
+          </div>
+
+          <div class="mb-3">
+            <%= form.label :status, "Status", class: "form-label text-light" %>
+            <div class="form-check">
+              <%= form.check_box :status, class: "form-check-input" %>
+              <label class="form-check-label text-light">Ativo</label>
+            </div>
+          </div>
+
+          <div class="form mb-3">
+            <%= form.label :image, "Imagem", class: "form-label text-light" %>
+            <%= form.file_field :image, class: "input", onchange: "displayFileName(this)" %>
+            <span class="input-border"></span>
+            <small class="form-text text-muted">A imagem deve ser um arquivo de imagem (JPEG, PNG, etc.).</small>
+            <div id="file-name" class="mt-2 text-light"></div>
+          </div>
+        </div>
+
+        <!-- Rodapé -->
+        <div class="modal-footer border-0 bg-black">
+          <button type="button" class="btn btn-dark px-4 py-2 rounded-pill" data-bs-dismiss="modal">Fechar</button>
+          <%= form.submit "Criar Objetivo", class: "btn btn-success px-4 py-2 rounded-pill shadow-sm" %>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Estilo do formulário dentro do modal */
+.form {
+  --width-of-input: 100%;
+  --border-height: 1px;
+  --border-before-color: rgba(221, 221, 221, 0.39);
+  --border-after-color: #5891ff;
+  --input-hovered-color: #4985e01f;
+  position: relative;
+  width: var(--width-of-input);
+}
+
+.input {
+  color: #fff;
+  font-size: 1rem;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+  border-bottom: var(--border-height) solid var(--border-before-color);
+}
+
+.input:focus {
+  outline: none;
+  background: var(--input-hovered-color);
+}
+
+.input-border {
+  position: absolute;
+  background: var(--border-after-color);
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  transition: 0.3s;
+}
+
+.input:focus ~ .input-border {
+  width: 100%;
+}
+
+.input:hover {
+  background: var(--input-hovered-color);
+}
+
+.form-label {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #b0b0b0;
+}
+
+.modal-content {
+  background-color: #212121;
+  color: white;
+}
+
+.modal-header, .modal-footer {
+  background-color: #121212;
+}
+
+.modal-title {
+  color: #fff;
+}
+
+.form .input[type="file"] {
+  color: transparent;
+}
+
+.form .input {
+  border-bottom: 2px solid #5891ff;
+}
+
+.form .input:focus {
+  border-color: #4d79ff;
+}
+
+.modal-body {
+  padding: 2rem;
+  transition: 0.3s ease-in-out;
+}
+
+.form-check-input:checked {
+  background-color: #5891ff;
+  border-color: #5891ff;
+}
+
+.modal.fade .modal-dialog {
+  transform: translate(0, -50px);
+  transition: transform 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+  transform: translate(0, 0);
+}
+</style>
+
+<script>
+  function displayFileName(input) {
+    var fileName = input.files[0] ? input.files[0].name : '';
+    input.closest('.form').querySelector('#file-name').textContent = fileName;
+  }
+</script>
