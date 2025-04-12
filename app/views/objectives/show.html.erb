@@ -1,0 +1,10 @@
+<h1><%= @objective.title %></h1>
+<p><%= @objective.description %></p>
+<p>Status: <%= @objective.status ? "Ativo" : "Inativo" %></p>
+
+<% if @objective.image.attached? %>
+  <%= image_tag @objective.image.variant(resize_to_limit: [300, 300]) %>
+<% end %>
+
+<%= link_to "Editar", edit_objective_path(@objective) %> |
+<%= link_to "Voltar", objectives_path %>
